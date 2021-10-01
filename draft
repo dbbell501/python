@@ -1,0 +1,11 @@
+# python program to find weather forecast using openweather api
+
+# import requests in order to use the api
+
+# input api key
+
+# input city name or zip code
+
+# openweather url + api + city to get the response
+
+# get response from the url in json format
