@@ -1,0 +1,35 @@
+import requests
+import json
+
+api_key = "e00d6b12edd1f369bb3e9247bc57e258"
+
+city = input("Please enter a city or zip code: ")
+
+base_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + api_key
+
+weather = requests.get(base_url).json()
+
+if weather['cod'] == 200:
+    kelvin = 273.15
+    temp = int(weather['main']['temp'] - kelvin)
+    feels_like = int(weather['main']['feels_like'] - kelvin)
+    pressure = weather['main']['pressure']
+    humidity = weather['main']['humidity']
+    wind_speed = weather['wind']['speed']
+    sunrise = weather['sys']['sunrise']
+    sunset = weather['sys']['sunset']
+    timezone = weather['timezone']
+    cloudy = weather['clouds']['all']
+    description = weather['weather'][0]['description']
+
+    print(f"Weather Information for: {city}")
+    print(f"Temperature: {temp} C")
+    print(f"Feels like: {feels_like} C")
+    print(f"Pressure: {pressure} hPa")
+    print(f"Humidity: {humidity}%")
+    print(f"Wind Speed: {wind_speed}")
+    print(f"Sunrise at {sunrise} and sunset at {sunset}")
+    print(f"Cloud: {cloudy}%")
+    print(f"Info: {description}")
+else:
+    print(f"Sorry, City: {city} not found.")
